@@ -1,6 +1,4 @@
 //server.js is only responsible for our routes
-
-
 //library imports
 var express = require("express");
 //bodyParser converts JSON into an object attaching it onto th "req"(uest) object
@@ -36,7 +34,7 @@ app.get("/todos", (req, res) => {
     res.send({todos});
   }, (e) => {
     res.status(400).send(e);
-  })
+  });
 });
 
 app.listen(3000, () => {
