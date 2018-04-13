@@ -3,6 +3,7 @@
 var express = require("express");
 //bodyParser converts JSON into an object attaching it onto th "req"(uest) object
 var bodyParser = require("body-parser");
+const {ObjectID} = require("mongodb");
 
 //local imports
 var {mongoose} = require("./db/mongoose");
@@ -34,6 +35,26 @@ app.get("/todos", (req, res) => {
     res.send({todos});
   }, (e) => {
     res.status(400).send(e);
+  });
+});
+
+//API route for fetching an individual todo
+app.get("/todos/:id", (req, res) => {
+  var id = req.params.id;
+
+  if(!ObjectID.isValid(id)) {
+    return res.status(404).send("The id is not valid.");
+  }
+
+  Todo.findById(id).then((todo) => {
+    if(!todo) {
+      res.status(404).send("No todo has this id.");
+    }
+    else {
+      res.send({todo});
+    }
+  }).catch((e) => {
+    res.status(400).send();
   });
 });
 

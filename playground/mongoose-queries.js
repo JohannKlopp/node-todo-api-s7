@@ -4,37 +4,37 @@ const {Todo} = require("./../server/models/todo");
 const {User} = require("./../server/models/user");
 
 
-// var id = "5acdf0c5de322321482f499211";
-//
-// if(!ObjectID.isValid(id)) {
-//   console.log("ID not valid.");
-// }
+var id = "5acdf0c5de322321482f499211";
 
-// Todo.find({
-//   _id: id
-// }).then((todos) =>{
-//   if(!todos) {
-//     return console.log("Id not found.");
-//   }
-//   console.log("Todos:", todos);
-// });
-//
-// // !todo only works when .then returns "null"
-// Todo.findOne({
-//   _id: id
-// }).then((todo) =>{
-//   if(!todo) {
-//     return console.log("Id not found.");
-//   }
-//   console.log("Todo:", todo);
-// });
+if(!ObjectID.isValid(id)) {
+  console.log("ID not valid.");
+}
 
-// Todo.findById(id).then((todo) =>{
-//   if(!todo) {
-//     return console.log("Id not found.");
-//   }
-//   console.log("Todo By Id:", todo);
-// }).catch((e) => console.log(e));
+Todo.find({
+  _id: id
+}).then((todos) =>{
+  if(!todos) {
+    return console.log("Id not found.");
+  }
+  console.log("Todos:", todos);
+});
+
+// !todo only works when .then returns "null"
+Todo.findOne({
+  _id: id
+}).then((todo) =>{
+  if(!todo) {
+    return console.log("Id not found.");
+  }
+  console.log("Todo:", todo);
+});
+
+Todo.findById(id).then((todo) =>{
+  if(!todo) {
+    return console.log("Id not found.");
+  }
+  console.log("Todo By Id:", todo);
+}).catch((e) => console.log(e));
 
 // query users collection (get an id), use user.findById,
 // Then handle the 3 cases:
