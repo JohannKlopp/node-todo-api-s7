@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm install",
     "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
   "engines": {
-    "node": "6.2.2",
-    "npm": "5.8.0"
+    "node": "6.2.2"
   },
   "author": "",
   "license": "ISC",
