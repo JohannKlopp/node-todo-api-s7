@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 
 //CRUD operations on a database
 //Create a resource: use POST http method and pass resource as the body
+
+//APP POST
 app.post("/todos", (req, res) => {
   var todo = new Todo({
     text: req.body.text
@@ -31,6 +33,7 @@ app.post("/todos", (req, res) => {
   });
 });
 
+//APP GET ALL
 app.get("/todos", (req, res) => {
   Todo.find().then((todos) => {
     res.send({todos});
@@ -40,6 +43,7 @@ app.get("/todos", (req, res) => {
 });
 
 //API route for fetching an individual todo
+//APP GET ONE ITEM
 app.get("/todos/:id", (req, res) => {
   var id = req.params.id;
 
@@ -59,6 +63,7 @@ app.get("/todos/:id", (req, res) => {
   });
 });
 
+//APP DELETE ONE ITEM
 app.delete("/todos/:id", (req, res) => {
   var id = req.params.id;
 
@@ -66,14 +71,15 @@ app.delete("/todos/:id", (req, res) => {
     return res.status(404).send("The id is not valid");
   }
 
-  Todo.findByIdAndRemove(id).then((result) => {
+  Todo.findByIdAndRemove(id).then((todo) => {
 
-    if(!result) {
+    if(!todo) {
       res.status(404).send("todo-id valid, but no todo has it.");
     }
     else {
-      var todo = result;
-      // res.send(`This todo was just deleted and is no longer available:\n ${{todo}}`);
+      // var todo = JSON.stringify(result);
+
+      // res.send(`This todo was just deleted and is no longer available:\n` + {result});
       res.send({todo});
     }
   }).catch((e) => {
