@@ -96,20 +96,21 @@ app.patch("/todos/:id", (req, res) => {
     return res.status(404).send("The id is not valid");
   }
 
-  if(_.isBoolean(body.completed) && body.completed) {
-    body.completedAt = new Date().getTime();
+  if(_.isBoolean(body.completed) && body.completed) { // "&& body.completed" checks if "completed" is true, if so proceed
+    body.completedAt = new Date().getTime(); //runs if cond. is a boolean and it is true
   }
   else {
-    body.completed = false;
+    //runs if it is not a boolean or if it is not true
+    body.completed = false; //also, everything'll eventually be updated by the model.
     body.completedAt = null;
   }
 
-  Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
-    if(!todo) {
+  Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((updatedTodo) => {
+    if(!updatedTodo) {
       return res.status(404).send();
     }
 
-    res.send({todo});
+    res.send({updatedTodo});
 
   }).catch((e) => {
     res.status(400).send();
