@@ -149,7 +149,7 @@ describe("DELETE /todos/:id", () =>{
 });
 
 describe("PATCH /todos/:id", () => {
-  it("should update the todo (from false to true + set new text)", (done) => {
+  it("should update the todo", (done) => {
     var hexId = todos[0]._id.toHexString();
     var text = "This should be the new text";
 
@@ -168,7 +168,7 @@ describe("PATCH /todos/:id", () => {
       .end(done);
   });
 
-  it("should update todo from true to false + autom. wipe completedAt + set new text", (done) => {
+  it("should clear completedAt when todo is changed to 'not completed'", (done) => {
     var hexId = todos[1]._id.toHexString();
     var text = "This should be the new text (2nd test)!!";
 
