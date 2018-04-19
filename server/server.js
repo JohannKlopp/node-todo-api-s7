@@ -1,3 +1,5 @@
+
+require("./config/config");
 //server.js is only responsible for our routes
 //library imports
 const _ = require("lodash");
@@ -12,7 +14,7 @@ var {Todo} = require("./models/todo");
 var {User} = require("./models/user");
 
 var app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // Getting body data sent from the client
 //With this I can send JSON data to my express application
